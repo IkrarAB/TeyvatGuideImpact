@@ -47,7 +47,7 @@
                 android:layout_toEndOf="@id/charIcon"
                 android:text="Eula"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <View
                 android:id="@+id/separator"
@@ -95,10 +95,9 @@
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_below="@id/separator"
-                android:layout_toEndOf="@id/charElement"
                 android:layout_marginTop="2dp"
-                android:src="@drawable/icon_cryo"
-                />
+                android:layout_toEndOf="@id/charElement"
+                android:src="@drawable/icon_cryo" />
 
             <TextView
                 android:id="@+id/charWeapon"
@@ -107,9 +106,9 @@
                 android:layout_below="@id/charElement"
                 android:layout_toEndOf="@id/txtWeapon"
                 android:text="Claymore"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:textSize="10sp"/>
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/charRegionIcon"
@@ -127,7 +126,7 @@
                 android:layout_below="@id/separator"
                 android:layout_alignEnd="@id/separator"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/stars5"/>
+                android:src="@drawable/stars5" />
 
         </RelativeLayout>
 

@@ -37,7 +37,7 @@ public class Menu extends AppCompatActivity {
     MaterialToolbar title;
     GridView gridView;
     ImageView charsIcon, charsPortrait, charsVisionIcon,charsRarity, charsNation;
-    TextView charsName, charsVision, charsWeapon, charsRegion;
+    TextView charsName, charsVision, charsWeapon, charsRegion, charsDesc, charsAff, charsCons, charsBirth;
 
     private WebView webView;
 
@@ -47,6 +47,59 @@ public class Menu extends AppCompatActivity {
             "Keqing", "Klee", "Lisa", "Mona", "Ningguang", "Noelle", "Qiqi", "Razor", "Rosaria",
             "Sucrose", "Tartaglia", "Traveler Anemo", "Traveler Geo", "Venti", "Xiangling", "Xiao",
             "Xingqiu", "Xinyan", "Yanfei", "Zhongli"};
+
+    String[] charCons = {"Princeps Cretaceus", "Lepus", "Grus Nivis", "Crater", "Victor Mare", "Rota Calamitas",
+            "Nubis Caesor", "Noctua", "Feles", "Aphros Delos", "Corvus", "Sinae Unicornis", "Papilio Charontis",
+            "Leo Minor", "Pavo Ocellus", "Acer Palmatum", "Trulla Cementarii", "Trifolium", "Tempus Fugit",
+            "Astrolabos", "Opus Aequilibrium", "Parma Cordis", "Pristina Nola", "Lupus Minor", "Spinea Corona",
+            "Ampulla", "Monoceros Caeli", "Viatrix", "Viatrix", "Carmen Dei", "Trulla", "Alatus Nemeseos",
+            "Fabulae Textile", "Fila Ignium", "Bestia Iustitia", "Lapis Dei"};
+
+    String[] charAff = {"Knights of Favonius","Knights of Favonius","Yashiro Commission", "Church of Favonius",
+                        "The Crux", "Adventurers' Guild", "Liyue Harbor", "Dawn Winery", "The Cat's Tail",
+                        "Knights of Favonius","Adventurers' Guild","Yuehai Pavilion", "Wangsheng Funeral Parlor",
+                        "Knights of Favonius", "Knights of Favonius", "The Crux", "Liyue Qixing", "Knights of Favonius",
+                        "Knights of Favonius", "Mondstadt", "Liyue Qixing", "Knights of Favonius", "Bubu Pharmacy",
+                        "Wolvendom", "Church of Favonius", "Knights of Favonius", "Fatui", "None", "None",
+                        "Mondstadt", "Wanmin Restaurant", "Liyue Adeptus", "Feiyun Commerce Guild", "Liyue Harbor",
+                        "Liyue Harbor Adepti", "Liyue Harbor"};
+
+    String[] charDesc = {"A genius known as the Kreideprinz, he is the Chief Alchemist and Captain of the Investigation Team of the Knights of Favonius.",
+                        "Always energetic and full of life, Amber's the best - albeit only - Outrider of the Knights of Favonius.",
+                        "Daughter of the Yashiro Commission's Kamisato Clan. Dignified and elegant, as well as wise and strong.",
+                        "Every denizen of Mondstadt adores Barbara. However, she learned the word \"idol\" from a magazine.",
+                        "Captain of her crew, The Crux. She's quite an unbound and forthright woman.",
+                        "A righteous and good-natured adventurer from Mondstadt who's unfortunately extremely unlucky.",
+                        "A young exorcist from a family of exorcists. He does everything he can to suppress his abundance of yang energy.",
+                        "The tycoon of a winery empire in Mondstadt, unmatched in every possible way.",
+                        "A young lady who has inherited trace amounts of non-human blood. She is the incredibly popular bartender of the Cat's Tail tavern.",
+                        "The Spindrift Knight, a scion of the old aristocracy, and the Captain of the Knights of Favonius Reconnaissance Company. The reason for which a descendant of the ancient nobles might join the Knights remains a great mystery in Mondstadt to this very day.",
+                        "A mysterious girl who calls herself \"Prinzessin der Verurteilung\" and travels with a night raven named Oz.",
+                        "The secretary at Yuehai Pavilion. The blood of the qilin, an illuminated beast, flows within her veins.",
+                        "The 77th Director of the Wangsheng Funeral Parlor. She took over the business at a rather young age.",
+                        "The righteous and rigorous Dandelion Knight, and Acting Grand Master of Mondstadt's Knights of Favonius",
+                        "A thinker in the Knights of Favonius with a somewhat exotic appearance.",
+                        "If one's heart is empty, all under heaven is empty. But if one's heart is pure, all under heaven is pure.",
+                        "The Yuheng of the Liyue Qixing. Has much to say about Rex Lapis' unilateral approach to policymaking in Liyue - but in truth, gods admire skeptics such as her quite a lot.",
+                        "An explosives expert and a regular at the Knights of Favonius' confinement room. Also known as Fleeing Sunlight.",
+                        "The languid but knowledgeable Librarian of the Knights of Favonius who was deemed by Sumeru Academia to be their most distinguished graduate in the past two centuries.",
+                        "A mysterious young astrologer who proclaims herself to be \"Astrologist Mona Megistus,\" and who possesses abilities to match the title. Erudite, but prideful.",
+                        "The Tianquan of Liyue Qixing. Her wealth is unsurpassed in all of Teyvat.",
+                        "A maid who faithfully serves the Knights of Favonius that dreams of joining their ranks someday.",
+                        "An apprentice and herb gatherer at Bubu Pharmacy. An undead with a bone-white complexion, she seldom has much in the way of words or emotion.",
+                        "A boy who lives among the wolves in Wolvendom of Mondstadt, away from human civilization. As agile as lightning.",
+                        "A sister of the church, though you wouldn't know it if it weren't for her attire. Known for her sharp, cold words and manner, she often works alone.",
+                        "An alchemist filled with curiosity about all things. She researches bio-alchemy.",
+                        "No. 11 of The Harbingers, also known as \"Childe\". His name is highly feared on the battlefield.",
+                        "A traveler from another world who had their only kin taken away, forcing them to embark on a journey to find The Seven.",
+                        "A traveler from another world who had their only kin taken away, forcing them to embark on a journey to find The Seven.",
+                        "One of the many bards of Mondstadt, who freely wanders the city's streets and alleys.",
+                        "A renowned chef from Liyue. She's extremely passionate about cooking and excels at making her signature hot and spicy dishes.",
+                        "A yaksha adeptus that defends Liyue. Also heralded as the \"Conqueror of Demons\" and \"Vigilant Yaksha\".",
+                        "A young man carrying a longsword who is frequently seen at book booths. He has a chivalrous heart and yearns for justice and fairness for all.",
+                        "Liyue's sole rock 'n' roll musician. She rebels against ossified prejudices using her music and passionate singing.",
+                        "A well-known legal adviser active in Liyue Harbor. A brilliant young lady in whose veins runs the blood of an illuminated beast.",
+                        "A mysterious expert contracted by the Wangsheng Funeral Parlor. Extremely knowledgeable in all things."};
 
     int[] charNation = {1,1,3,1,2,1,2,1,1,1,1,2,2,1,1,3,2,1,1,1,2,1,2,1,1,1,4,9,9,1,2,2,2,2,2,2};
 
@@ -122,6 +175,9 @@ public class Menu extends AppCompatActivity {
         gridView = findViewById(R.id.charGrid);
         charList = findViewById(R.id.charlist_layout);
         charsName = findViewById(R.id.charName);
+        charsDesc = findViewById(R.id.charDesc);
+        charsCons = findViewById(R.id.charCons);
+        charsAff = findViewById(R.id.charAff);
         charsVision = findViewById(R.id.charElement);
         charsWeapon = findViewById(R.id.charWeapon);
         charsNation = findViewById(R.id.charRegionIcon);
@@ -134,8 +190,9 @@ public class Menu extends AppCompatActivity {
         charTails = findViewById(R.id.chartails_layout);
         title = toolbar;
 
-        MainAdapter adapter = new MainAdapter(Menu.this, charName, charVision, charWeapon, charIcon,
-                                                charPortrait, charVisionIcon, charRarity, charNation);
+        MainAdapter adapter = new MainAdapter(Menu.this, charName, charVision, charWeapon, charDesc,
+                                                charAff,charCons,charIcon, charPortrait, charVisionIcon, charRarity,
+                                                charNation);
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -146,6 +203,9 @@ public class Menu extends AppCompatActivity {
                 charTails.setVisibility(View.VISIBLE);
                 charsName.setText(charName[+position]);
                 charsWeapon.setText(charWeapon[+position]);
+                charsDesc.setText(charDesc[+position]);
+                charsCons.setText(charCons[+position]);
+                charsAff.setText(charAff[+position]);
                 charsIcon.setImageResource(charIcon[+position]);
                 charsPortrait.setImageResource(charPortrait[+position]);
                 charsVision.setText(charVision[+position]);
