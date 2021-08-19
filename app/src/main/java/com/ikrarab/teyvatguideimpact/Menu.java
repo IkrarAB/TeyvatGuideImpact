@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,7 +22,6 @@ import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
-import com.ikrarab.teyvatguideimpact.retrofit.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,22 +36,41 @@ public class Menu extends AppCompatActivity {
     RelativeLayout map,charTails;
     MaterialToolbar title;
     GridView gridView;
-    ImageView charsIcon, charsPortrait;
-    TextView charsName;
-    private CharEntity charEntity;
-    public static CharDatabase charDatabase;
-
-    List<CharEntity> charEntities = new ArrayList<>();
+    ImageView charsIcon, charsPortrait, charsVisionIcon,charsRarity, charsNation;
+    TextView charsName, charsVision, charsWeapon, charsRegion;
 
     private WebView webView;
-    private final String TAG = "Menu";
 
     String url = "https://webstatic-sea.mihoyo.com/app/ys-map-sea/?lang=en-us#/map/2?shown_types=";
-    public String[] charName = {"Albedo", "Amber", "Ayaka", "Barbara", "Beidou", "Bennett", "Chongyun",
+    String[] charName = {"Albedo", "Amber", "Ayaka", "Barbara", "Beidou", "Bennett", "Chongyun",
             "Diluc", "Diona", "Eula", "Fischl", "Ganyu", "Hu Tao", "Jean", "Kaeya", "Kazuha",
             "Keqing", "Klee", "Lisa", "Mona", "Ningguang", "Noelle", "Qiqi", "Razor", "Rosaria",
             "Sucrose", "Tartaglia", "Traveler Anemo", "Traveler Geo", "Venti", "Xiangling", "Xiao",
             "Xingqiu", "Xinyan", "Yanfei", "Zhongli"};
+
+    int[] charNation = {1,1,3,1,2,1,2,1,1,1,1,2,2,1,1,3,2,1,1,1,2,1,2,1,1,1,4,9,9,1,2,2,2,2,2,2};
+
+    String[] charWeapon = {"Sword","Bow","Sword","Catalyst","Claymore","Sword", "Claymore",
+            "Claymore","Bow","Claymore","Bow","Bow","Polearm","Sword","Sword","Sword","Sword",
+            "Catalyst","Catalyst","Catalyst","Catalyst","Claymore","Sword","Claymore", "Polearm",
+            "Catalyst","Bow","Sword","Sword","Bow","Polearm","Polearm","Sword","Claymore","Catalyst",
+            "Polearm"};
+
+    String[] charVision = {"Geo","Pyro","Cryo","Hydro","Electro","Pyro","Cryo","Pyro","Cryo","Cryo",
+            "Electro","Cryo","Pyro","Anemo","Cryo","Anemo","Electro","Pyro","Electro","Hydro","Geo",
+            "Geo","Cryo","Electro","Cryo","Anemo","Hydro","Anemo","Geo","Anemo","Pyro","Anemo","Hydro",
+            "Pyro","Pyro","Geo"};
+
+    int[] charRarity = {5,4,5,4,4,4,4,5,4,5,4,5,5,5,4,5,5,5,4,5,4,4,5,4,4,4,5,5,5,5,4,5,4,4,4,5};
+
+    int[] charVisionIcon = {R.drawable.icon_geo,R.drawable.icon_pyro,R.drawable.icon_cryo,R.drawable.icon_hydro,
+            R.drawable.icon_electro,R.drawable.icon_pyro,R.drawable.icon_cryo,R.drawable.icon_pyro,R.drawable.icon_cryo,
+            R.drawable.icon_cryo,R.drawable.icon_electro,R.drawable.icon_cryo,R.drawable.icon_pyro,R.drawable.icon_anemo,
+            R.drawable.icon_cryo,R.drawable.icon_anemo,R.drawable.icon_electro,R.drawable.icon_pyro,R.drawable.icon_electro,
+            R.drawable.icon_hydro,R.drawable.icon_geo,R.drawable.icon_geo,R.drawable.icon_cryo,R.drawable.icon_electro,
+            R.drawable.icon_cryo,R.drawable.icon_anemo,R.drawable.icon_hydro,R.drawable.icon_anemo,R.drawable.icon_geo,
+            R.drawable.icon_anemo,R.drawable.icon_pyro,R.drawable.icon_anemo,R.drawable.icon_hydro,R.drawable.icon_pyro,
+            R.drawable.icon_pyro,R.drawable.icon_geo};
 
     int[] charIcon = {R.drawable.icon_albedo,R.drawable.icon_amber,R.drawable.icon_ayaka,R.drawable.icon_barbara,
             R.drawable.icon_beidou,R.drawable.icon_bennett,R.drawable.icon_chongyun,R.drawable.icon_diluc,
@@ -75,7 +94,6 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        getDataFromApi();
 
         webView = (WebView) findViewById(R.id.webview);
         webView.setWebViewClient(new WebViewClient());
@@ -104,13 +122,20 @@ public class Menu extends AppCompatActivity {
         gridView = findViewById(R.id.charGrid);
         charList = findViewById(R.id.charlist_layout);
         charsName = findViewById(R.id.charName);
+        charsVision = findViewById(R.id.charElement);
+        charsWeapon = findViewById(R.id.charWeapon);
+        charsNation = findViewById(R.id.charRegionIcon);
+        charsRegion = findViewById(R.id.charRegion);
         charsIcon = findViewById(R.id.charIcon);
+        charsRarity = findViewById(R.id.charRarity);
+        charsVisionIcon = findViewById(R.id.charElementIcon);
         charsPortrait = findViewById(R.id.charPic);
         map = findViewById(R.id.map_layout);
         charTails = findViewById(R.id.chartails_layout);
         title = toolbar;
 
-        MainAdapter adapter = new MainAdapter(Menu.this,charName,charIcon,charPortrait);
+        MainAdapter adapter = new MainAdapter(Menu.this, charName, charVision, charWeapon, charIcon,
+                                                charPortrait, charVisionIcon, charRarity, charNation);
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -120,10 +145,57 @@ public class Menu extends AppCompatActivity {
                 map.setVisibility(View.GONE);
                 charTails.setVisibility(View.VISIBLE);
                 charsName.setText(charName[+position]);
+                charsWeapon.setText(charWeapon[+position]);
                 charsIcon.setImageResource(charIcon[+position]);
                 charsPortrait.setImageResource(charPortrait[+position]);
-                title.setTitle("Character Details");
+                charsVision.setText(charVision[+position]);
+                if (charVision[+position].equals("Geo")){
+                    charsVision.setTextColor(Color.parseColor("#F5D25D"));
+                    charsVisionIcon.setImageResource(R.drawable.icon_geo);
+                } else if (charVision[+position].equals("Pyro")){
+                    charsVision.setTextColor(Color.parseColor("#F08738"));
+                    charsVisionIcon.setImageResource(R.drawable.icon_pyro);
+                } else if (charVision[+position].equals("Cryo")){
+                    charsVision.setTextColor(Color.parseColor("#93F3F6"));
+                    charsVisionIcon.setImageResource(R.drawable.icon_cryo);
+                } else if (charVision[+position].equals("Hydro")){
+                    charsVision.setTextColor(Color.parseColor("#2DC7FA"));
+                    charsVisionIcon.setImageResource(R.drawable.icon_hydro);
+                } else if (charVision[+position].equals("Electro")){
+                    charsVision.setTextColor(Color.parseColor("#CF91FA"));
+                    charsVisionIcon.setImageResource(R.drawable.icon_electro);
+                } else if (charVision[+position].equals("Anemo")){
+                    charsVision.setTextColor(Color.parseColor("#5BD3A6"));
+                    charsVisionIcon.setImageResource(R.drawable.icon_anemo);
+                } else if (charVision[+position].equals("Dendro")){
+                    charsVision.setTextColor(Color.parseColor("#9FCF2E"));
+                    charsVisionIcon.setImageResource(R.drawable.icon_dendro);
+                }
 
+                if (charRarity[+position] == 5){
+                    charsRarity.setImageResource(R.drawable.stars5);
+                } else {
+                    charsRarity.setImageResource(R.drawable.stars4);
+                }
+
+                if (charNation[+position] == 1){
+                    charsNation.setImageResource(R.drawable.icon_mondstadt);
+                    charsRegion.setText("Mondstadt");
+                } else if (charNation[+position] == 2){
+                    charsNation.setImageResource(R.drawable.icon_liyue);
+                    charsRegion.setText("Liyue");
+                } else if (charNation[+position] == 3){
+                    charsNation.setImageResource(R.drawable.icon_inazuma);
+                    charsRegion.setText("Inazuma");
+                } else if (charNation[+position] == 4){
+                    charsNation.setImageResource(R.drawable.icon_unknown);
+                    charsRegion.setText("Snezhnaya");
+                } else if (charNation[+position] == 9){
+                    charsNation.setImageResource(R.drawable.icon_unknown);
+                    charsRegion.setText("Celestia");
+                }
+
+                title.setTitle("Character Details");
             }
         });
 
@@ -161,26 +233,10 @@ public class Menu extends AppCompatActivity {
         if (webView.canGoBack()){
             webView.goBack();
         } else {
-            super.onBackPressed();
+            map.setVisibility(View.GONE);
+            charList.setVisibility(View.VISIBLE);
+            charTails.setVisibility(View.GONE);
+            title.setTitle("Character List");
         }
     }
-
-    private void getDataFromApi(){
-        ApiService.endPoint().getCharListData()
-                .enqueue(new Callback<CharListModel>() {
-                    @Override
-                    public void onResponse(Call<CharListModel> call, Response<CharListModel> response) {
-                        if (response.isSuccessful()){
-                            List<CharListModel.Types> results = response.body().getTypes();
-                            Log.d(TAG, results.toString());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<CharListModel> call, Throwable t) {
-                        Log.d(TAG, t.toString());
-                    }
-                });
-    }
-
 }

@@ -11,7 +11,13 @@
     <color name="black_tgi1">#000A11</color>
     <color name="black_tgi2">#0D161D</color>
     <color name="white2">#C4C4C4</color>
-    <color name="cryo">#00D1FF</color>
+    <color name="anemo">#5BD3A6</color>
+    <color name="cryo">#93F3F6</color>
+    <color name="dendro">#9FCF2E</color>
+    <color name="electro">#CF91FA</color>
+    <color name="pyro">#F08738</color>
+    <color name="geo">#F5D25D</color>
+    <color name="hydro">#2DC7FA</color>
     <color name="star">#FAFF00</color>
     <color name="desc">#b2bec3</color>
 </resources>

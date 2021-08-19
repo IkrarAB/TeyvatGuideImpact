@@ -13,14 +13,25 @@ public class MainAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private String[] charName;
+    private String[] charVision;
+    private String[] charWeapon;
     private int[] charIcon;
     private int[] charPortrait;
+    private int[] charVisionIcon;
+    private int[] charRarity;
+    private int[] charNation;
 
-    public MainAdapter(Context c, String[] charName, int[] charIcon, int[] charPortrait) {
+    public MainAdapter(Context c, String[] charName, String[] charVision, String[]charWeapon, int[] charIcon, int[] charPortrait,
+                       int[] charVisionIcon, int[] charRarity, int[] charNation) {
         context = c;
         this.charName = charName;
         this.charIcon = charIcon;
         this.charPortrait = charPortrait;
+        this.charVision = charVision;
+        this.charVisionIcon = charVisionIcon;
+        this.charRarity = charRarity;
+        this.charWeapon = charWeapon;
+        this.charNation = charNation;
     }
 
     @Override
