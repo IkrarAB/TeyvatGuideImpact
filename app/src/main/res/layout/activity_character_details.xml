@@ -270,6 +270,38 @@
                 android:textColor="@color/white"
                 android:textSize="10sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/charPic"
+                android:layout_marginTop="20dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/charPic"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_chartails"
+                android:backgroundTint="@color/black_tgi1">
+
+                <TextView
+                    android:id="@+id/soon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="Guides Coming Soon :)"
+                    android:textColor="@color/white" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/soon"
+                    android:layout_margin="10dp"
+                    android:background="@color/white" />
+
+            </RelativeLayout>
+
         </RelativeLayout>
 
     </ScrollView>
