@@ -5,18 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
@@ -34,6 +34,7 @@ public class Menu extends AppCompatActivity {
     RelativeLayout map,charTails;
     MaterialToolbar title;
     GridView gridView;
+    TextView charsName,charsElement;
     private WebView webView;
     private final String TAG = "Menu";
 
@@ -43,7 +44,14 @@ public class Menu extends AppCompatActivity {
             "keqing", "klee", "lisa", "mona", "ningguang", "noelle", "qiqi", "razor", "rosaria",
             "sucrose", "tartaglia", "traveler-anemo", "traveler-geo", "venti", "xiangling", "xiao",
             "xingqiu", "xinyan", "yanfei", "zhongli"};
-    int[] charIcon = {};
+    int[] charIcon = {R.drawable.icon_albedo,R.drawable.icon_amber,R.drawable.icon_ayaka,R.drawable.icon_barbara,
+            R.drawable.icon_beidou,R.drawable.icon_bennett,R.drawable.icon_chongyun,R.drawable.icon_diluc,
+            R.drawable.icon_diona,R.drawable.icon_eula,R.drawable.icon_fischl,R.drawable.icon_ganyu,R.drawable.icon_hutao,
+            R.drawable.icon_jean,R.drawable.icon_kaeya,R.drawable.icon_kazuha,R.drawable.icon_keqing,R.drawable.icon_klee,
+            R.drawable.icon_lisa,R.drawable.icon_mona,R.drawable.icon_ningguang,R.drawable.icon_noelle,R.drawable.icon_qiqi,
+            R.drawable.icon_razor,R.drawable.icon_rosaria,R.drawable.icon_sucrose,R.drawable.icon_tartaglia,R.drawable.icon_traveler_anemo,
+            R.drawable.icon_traveler_geo,R.drawable.icon_venti,R.drawable.icon_xiangling,R.drawable.icon_xiao,R.drawable.icon_xingqiu,
+            R.drawable.icon_xinyan,R.drawable.icon_yanfei,R.drawable.icon_zhongli};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +85,24 @@ public class Menu extends AppCompatActivity {
 
         gridView = findViewById(R.id.charGrid);
         charList = findViewById(R.id.charlist_layout);
+        charsName = findViewById(R.id.charName);
         map = findViewById(R.id.map_layout);
         charTails = findViewById(R.id.chartails_layout);
         title = toolbar;
+
+        MainAdapter adapter = new MainAdapter(Menu.this,charName,charIcon);
+        gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                charList.setVisibility(View.GONE);
+                map.setVisibility(View.GONE);
+                charTails.setVisibility(View.VISIBLE);
+                charsName.setText(charName[+position]);
+                title.setTitle("Character List");
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
