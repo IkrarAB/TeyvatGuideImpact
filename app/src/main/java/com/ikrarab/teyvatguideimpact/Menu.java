@@ -38,7 +38,12 @@ public class Menu extends AppCompatActivity {
     private final String TAG = "Menu";
 
     String url = "https://webstatic-sea.mihoyo.com/app/ys-map-sea/?lang=en-us#/map/2?shown_types=";
-    String[] charName = {"Albedo", "Amber", "Beidou", "Chongyun", "Diona", "Eula", "Fischl"};
+    String[] charName = {"albedo", "amber", "ayaka", "barbara", "beidou", "bennett", "chongyun",
+            "diluc", "diona", "eula", "fischl", "ganyu", "hu-tao", "jean", "kaeya", "kazuha",
+            "keqing", "klee", "lisa", "mona", "ningguang", "noelle", "qiqi", "razor", "rosaria",
+            "sucrose", "tartaglia", "traveler-anemo", "traveler-geo", "venti", "xiangling", "xiao",
+            "xingqiu", "xinyan", "yanfei", "zhongli"};
+    int[] charIcon = {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
