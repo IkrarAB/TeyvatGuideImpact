@@ -28,9 +28,9 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <include layout="@layout/activity_character_list"
+        <include layout="@layout/activity_character_list"/>
+        <include layout="@layout/activity_character_details"
             android:visibility="gone"/>
-        <include layout="@layout/activity_character_details"/>
         <include layout="@layout/activity_map"
             android:visibility="gone"/>
 

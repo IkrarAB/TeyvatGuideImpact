@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
-    private static String BASE_URL =  "http://api.genshin.dev/";
+    private static String BASE_URL =  "http://api.genshin.dev/characters/";
     private static Retrofit retrofit;
     public static ApiEndPoint endPoint(){
         retrofit = new Retrofit.Builder()

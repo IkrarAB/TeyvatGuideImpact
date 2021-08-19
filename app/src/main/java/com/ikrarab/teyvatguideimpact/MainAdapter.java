@@ -14,11 +14,13 @@ public class MainAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private String[] charName;
     private int[] charIcon;
+    private int[] charPortrait;
 
-    public MainAdapter(Context c, String[] charName, int[] charIcon) {
+    public MainAdapter(Context c, String[] charName, int[] charIcon, int[] charPortrait) {
         context = c;
         this.charName = charName;
         this.charIcon = charIcon;
+        this.charPortrait = charPortrait;
     }
 
     @Override
