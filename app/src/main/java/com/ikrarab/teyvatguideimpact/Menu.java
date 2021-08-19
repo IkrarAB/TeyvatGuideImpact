@@ -48,6 +48,13 @@ public class Menu extends AppCompatActivity {
             "Sucrose", "Tartaglia", "Traveler Anemo", "Traveler Geo", "Venti", "Xiangling", "Xiao",
             "Xingqiu", "Xinyan", "Yanfei", "Zhongli"};
 
+    String[] charBirth = {"13 September", "10 August", "28 September", "5 July", "14 February",
+            "29 February", "7 September", "30 April", "18 January", "25 October", "27 May", "2 December",
+            "15 July", "14 March", "30 November", "29 October", "20 November", "27 July", "9 June",
+            "31 August", "26 August", "21 March", "3 March", "9 September", "24 January", "26 November",
+            "20 July", "Your Birthday ;)", "Your Birthday ;)", "16 June", "2 November", "17 April",
+            "9 October", "16 October", "28 July", "31 December"};
+
     String[] charCons = {"Princeps Cretaceus", "Lepus", "Grus Nivis", "Crater", "Victor Mare", "Rota Calamitas",
             "Nubis Caesor", "Noctua", "Feles", "Aphros Delos", "Corvus", "Sinae Unicornis", "Papilio Charontis",
             "Leo Minor", "Pavo Ocellus", "Acer Palmatum", "Trulla Cementarii", "Trifolium", "Tempus Fugit",
@@ -176,6 +183,7 @@ public class Menu extends AppCompatActivity {
         charList = findViewById(R.id.charlist_layout);
         charsName = findViewById(R.id.charName);
         charsDesc = findViewById(R.id.charDesc);
+        charsBirth = findViewById(R.id.charBirth);
         charsCons = findViewById(R.id.charCons);
         charsAff = findViewById(R.id.charAff);
         charsVision = findViewById(R.id.charElement);
@@ -191,8 +199,8 @@ public class Menu extends AppCompatActivity {
         title = toolbar;
 
         MainAdapter adapter = new MainAdapter(Menu.this, charName, charVision, charWeapon, charDesc,
-                                                charAff,charCons,charIcon, charPortrait, charVisionIcon, charRarity,
-                                                charNation);
+                                                charAff, charCons, charBirth,charIcon, charPortrait,
+                                                charVisionIcon, charRarity, charNation);
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -205,6 +213,7 @@ public class Menu extends AppCompatActivity {
                 charsWeapon.setText(charWeapon[+position]);
                 charsDesc.setText(charDesc[+position]);
                 charsCons.setText(charCons[+position]);
+                charsBirth.setText(charBirth[+position]);
                 charsAff.setText(charAff[+position]);
                 charsIcon.setImageResource(charIcon[+position]);
                 charsPortrait.setImageResource(charPortrait[+position]);

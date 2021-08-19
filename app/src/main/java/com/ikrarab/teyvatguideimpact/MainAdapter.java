@@ -18,6 +18,7 @@ public class MainAdapter extends BaseAdapter {
     private String[] charDesc;
     private String[] charAff;
     private String[] charCons;
+    private String[] charBirth;
     private int[] charIcon;
     private int[] charPortrait;
     private int[] charVisionIcon;
@@ -25,9 +26,10 @@ public class MainAdapter extends BaseAdapter {
     private int[] charNation;
 
     public MainAdapter(Context c, String[]charName, String[]charVision, String[]charWeapon, String[]charDesc,
-                       String[]charAff, String[]charCons, int[] charIcon, int[] charPortrait, int[] charVisionIcon,
+                       String[]charAff, String[]charCons, String[]charBirth,int[] charIcon, int[] charPortrait, int[] charVisionIcon,
                        int[] charRarity, int[] charNation) {
         context = c;
+        this.charBirth = charBirth;
         this.charCons = charCons;
         this.charAff = charAff;
         this.charName = charName;
